@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script>
+var a=0;
+var speed=5000;
+var l="abcdefghijklmnopqrtuvwxyz";
+function number(max)
+{
+var ra=Math.random();
+var n=ra*max;
+var f=Math.floor(n);
+return f;
+}
+function letterpick()
+{
+var r=number(l.length);
+var re=l.charAt(r);
+return re;
+}
+function position()
+{
+var span=$("<span/>");
+span.css("position","absolute");
+var rx=number(100)+"%";
+span.css("bottom",rx);
+span.css("left",0);
+$('<img class="inline" src="building.jpg" />')
+              .prependTo(span);
+span.appendTo("body");
+return span;
+}
+function makefall()
+{
+var le=position();
+le.animate({"left":"90%"},speed);
+le.fadeOut(200);
+le.click(function(){
+le.hide();
+a=a+10;
+$("#p").text("Score:"+a);
+});
+if(a%100==0&&a!=0)
+{
+speed=speed-500;
+}
+
+}
+$(document).on();
+setInterval(makefall,2000);
+</script>
+</head>
+<body style="background-image:url('back.jpg');  background-position: fixed;background-repeat: no-repeat;background-size: cover;">
+<p id="p1" style="font-size:70px;margin-left:800px">Duck Shooting</p>
+<p id="p" style="font-size:70px;margin-left:1650px;margin-top:-150px">Score:0</p>
+</body>
+</html>
